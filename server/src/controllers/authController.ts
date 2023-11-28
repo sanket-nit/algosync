@@ -3,16 +3,28 @@ import { Response } from "express";
 import * as jwt from "jsonwebtoken";
 import { User } from "../model/User";
 import { IRequest } from "../types";
+import { z } from "zod";
+
+const safeLoginInput = z.object({
+  username: z.string().min(3).max(20),
+  password: z.string().min(6).max(20),
+});
+
+const safeRegisterInput = z.object({
+  username: z.string().min(3).max(20),
+  email: z.string().email(),
+  password: z.string().min(6).max(20),
+});
 
 /************************ Login ************************/
 
 const handleLogin = async (req: IRequest, res: Response) => {
-  const { username, password } = req.body;
+  const parsedInput = safeLoginInput.safeParse(req.body);
 
-  if (!username || !password) {
-    return res.status(400).json({ message: "username and password are required" });
+  if (!parsedInput.success) {
+    return res.sendStatus(400);
   }
-
+  const { username, password } = req.body;
   try {
     const foundUser = await User.findOne({ username });
 
@@ -42,11 +54,13 @@ const handleLogin = async (req: IRequest, res: Response) => {
 /************************ Register  ************************/
 
 const handleRegister = async (req: IRequest, res: Response) => {
-  const { username, email, password } = req.body;
+  const parsedInput = safeLoginInput.safeParse(req.body);
 
-  if (!username || !email || !password) {
-    return res.status(400).json({ message: "Username, email and password are required" });
+  if (!parsedInput.success) {
+    return res.sendStatus(400);
   }
+
+  const { username, email, password } = req.body;
 
   const duplicateUser = await User.findOne({ username });
   if (duplicateUser) {
@@ -57,7 +71,7 @@ const handleRegister = async (req: IRequest, res: Response) => {
     const hashedPassword = await hash(password, 10);
     const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
-    return res.status(201).json({ success: `New user ${newUser} created!` });
+    return res.status(201).json({ message: `Account created` });
   } catch (err: any) {
     return res.status(500).json({ message: err.message });
   }

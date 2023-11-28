@@ -3,6 +3,7 @@ import * as z from "zod";
 import axios from "@/api/axios";
 import useAuth from "@/hooks/useAuth";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -12,6 +13,7 @@ import { ILoginResponse } from "@/types/login";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Spinner } from "@/components/ui/spinner";
 
 const SigninForm = () => {
   const navigate = useNavigate();
@@ -23,7 +25,8 @@ const SigninForm = () => {
   const { toast } = useToast();
   const { setAuth } = useAuth();
 
-  const isLoading = false;
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<z.infer<typeof SigninValidation>>({
     resolver: zodResolver(SigninValidation),
     defaultValues: {
@@ -34,20 +37,23 @@ const SigninForm = () => {
 
   async function onSubmit(values: z.infer<typeof SigninValidation>) {
     try {
+      setIsLoading(true);
       const res = await axios.post<ILoginResponse>("/api/auth/login", values, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
 
-      const accessToken:string = res?.data?.accessToken;
+      const accessToken: string = res?.data?.accessToken;
       const { username } = form.getValues();
-      
+
       setAuth({
-        username: username, 
+        username: username,
         accessToken: accessToken,
-      })
+      });
+      setIsLoading(false);
       navigate(from, { replace: true });
     } catch (err: any) {
+      setIsLoading(false);
       console.log(err);
       if (!err?.response) {
         toast({ title: "Error", description: "No reponse from server", variant: "destructive" });
@@ -91,7 +97,7 @@ const SigninForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit">{isLoading ? <div className="flex-center gap-2">Loading...</div> : "Sign in"}</Button>
+          <Button type="submit">{isLoading ? <Spinner /> : "Sign in"}</Button>
         </form>
         <p className="mt-4">
           Don't have an account?{" "}

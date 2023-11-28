@@ -7,7 +7,7 @@ const AuthLayout = () => {
       {isAuthenticated ? (
         <Navigate to={"/"} />
       ) : (
-        <section className="flex justify-center items-center h-full w-screen">
+        <section className="flex justify-center items-center min-h-full">
           <Outlet />
         </section>
       )}

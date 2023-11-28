@@ -7,7 +7,7 @@ const AppLayout = () => {
     <>
       <Navbar />
       <Toaster />
-      <main className="h-screen pt-28">
+      <main className="h-full w-full px-6 pt-28">
         <Outlet />
       </main>
     </>

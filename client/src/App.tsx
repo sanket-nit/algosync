@@ -23,8 +23,8 @@ function App() {
         </Route>
 
         {/* Private Routes */}
-        <Route element={<PersistLogin />}>
-          <Route path="/" element={<AppLayout />}>
+        <Route path="/" element={<AppLayout />}>
+          <Route element={<PersistLogin />}>
             <Route element={<RequireAuth />}>
               <Route path="/home" element={<Home />} />
               <Route path="/editor" element={<CodeEditor />} />
