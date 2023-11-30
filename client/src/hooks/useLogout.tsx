@@ -11,7 +11,7 @@ const useLogout = () => {
   const logout = async () => {
     try {
       setIsLoading(true)
-      const response = await axios('/api/auth/logout', { withCredentials: true })
+      await axios('/api/auth/logout', { withCredentials: true })
       setIsLoading(false)
       setAuth({})
       navigate('/')

@@ -11,9 +11,6 @@ import PersistLogin from './pages/layout/PersistLogin'
 import Visualiser from './pages/visualiser/Visualiser'
 
 function App() {
-  function log(val:any) {
-    console.log(val)
-  }
   return (
     <>
       <Routes>
