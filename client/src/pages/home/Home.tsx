@@ -1,8 +1,8 @@
-import useRefresh from "@/hooks/useRefresh";
-import { useEffect } from "react";
+import useRefresh from '@/hooks/useRefresh'
+import { useEffect } from 'react'
 
 const Home = () => {
-  const refresh = useRefresh();
+  const refresh = useRefresh()
 
   const logRefresh = async () => {
     // const s = await refresh();
@@ -11,14 +11,14 @@ const Home = () => {
   }
 
   useEffect(() => {
-    logRefresh();
+    logRefresh()
   }, [])
 
   return (
     <div>
       <h1>Home</h1>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

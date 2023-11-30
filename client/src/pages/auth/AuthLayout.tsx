@@ -1,18 +1,18 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet } from 'react-router-dom'
 
 const AuthLayout = () => {
-  const isAuthenticated = false;
+  const isAuthenticated = false
   return (
     <>
       {isAuthenticated ? (
-        <Navigate to={"/"} />
+        <Navigate to={'/'} />
       ) : (
-        <section className="flex justify-center items-center min-h-full">
+        <section className='flex justify-center items-center min-h-full'>
           <Outlet />
         </section>
       )}
     </>
-  );
-};
+  )
+}
 
-export default AuthLayout;
+export default AuthLayout

@@ -1,33 +1,33 @@
-import useAuth from "@/hooks/useAuth";
-import useRefresh from "@/hooks/useRefresh";
-import Loader from "@/components/shared/Loader";
+import useAuth from '@/hooks/useAuth'
+import useRefresh from '@/hooks/useRefresh'
+import Loader from '@/components/shared/Loader'
 
-import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { Outlet } from 'react-router-dom'
 
 const PersistLogin = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true)
 
-  const refresh = useRefresh();
-  const { auth } = useAuth();
+  const refresh = useRefresh()
+  const { auth } = useAuth()
 
   useEffect(() => {
     const verifyRefreshToken = async () => {
       try {
-        await refresh();
+        await refresh()
       } catch (error) {
-        console.log(error);
+        console.log(error)
       } finally {
-        setIsLoading(false);
+        setIsLoading(false)
       }
-    };
+    }
 
-    !auth?.accessToken ? verifyRefreshToken() : setIsLoading(false);
-  }, []);
+    !auth?.accessToken ? verifyRefreshToken() : setIsLoading(false)
+  }, [])
 
-  useEffect(() => {}, [isLoading]);
+  useEffect(() => {}, [isLoading])
 
-  return <>{isLoading ? <Loader /> : <Outlet />}</>;
-};
+  return <>{isLoading ? <Loader /> : <Outlet />}</>
+}
 
-export default PersistLogin;
+export default PersistLogin
