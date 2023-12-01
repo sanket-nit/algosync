@@ -31,9 +31,6 @@ const Visualiser: React.FC = () => {
     for (let i = 0; i < n - 1; i++) {
       for (let j = 0; j < n - i - 1; j++) {
         if (newArray[j] > newArray[j + 1]) {
-          if (!inProcess) {
-            return;
-          }
           await delayTime(sortingSpeed[0])
           const temp = newArray[j]
           newArray[j] = newArray[j + 1]
@@ -149,7 +146,7 @@ const Visualiser: React.FC = () => {
             return (
               <div
                 key={index}
-                className='bg-blue-500 h-10 w-10 flex justify-center items-center text-white rounded transition-all duration-500'
+                className='bg-violet-300 h-10 w-10 flex justify-center items-center text-white rounded transition-all duration-500'
                 style={{ height: `${value}%` }}
               >
                 {value}
