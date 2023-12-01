@@ -1,6 +1,5 @@
 import useAuth from '@/hooks/useAuth'
 import useRefresh from '@/hooks/useRefresh'
-import Loader from '@/components/shared/Loader'
 
 import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
@@ -27,7 +26,7 @@ const PersistLogin = () => {
 
   useEffect(() => {}, [isLoading])
 
-  return <>{isLoading ? <Loader /> : <Outlet />}</>
+  return <>{isLoading ? <> </> : <Outlet />}</>
 }
 
 export default PersistLogin

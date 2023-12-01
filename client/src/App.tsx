@@ -8,7 +8,7 @@ import Marketing from './pages/marketing/Marketing'
 import RequireAuth from './pages/layout/RequireAuth'
 import CodeEditor from './pages/codeEditor/CodeEditor'
 import PersistLogin from './pages/layout/PersistLogin'
-import Visualiser from './pages/visualiser/Visualiser'
+import VisualiserLayout from './pages/visualiser/VisualiserLayout'
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
           <Route element={<PersistLogin />}>
             <Route element={<RequireAuth />}>
               <Route path='/home' element={<Home />} />
-              <Route path='/visualiser' element={<Visualiser />} />
+              <Route path='/visualiser' element={<VisualiserLayout />} />
               <Route path='/editor' element={<CodeEditor />} />
             </Route>
           </Route>
