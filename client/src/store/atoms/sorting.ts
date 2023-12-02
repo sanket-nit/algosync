@@ -1,8 +1,8 @@
-import { atom, RecoilState } from "recoil";
+import { atom, RecoilState } from 'recoil'
 
-export type SortingArray = number[];
+export type SortingArray = number[]
 
 export const sortingArrayAtom: RecoilState<SortingArray> = atom<SortingArray>({
-  key: "sortingArrayAtom",
-  default: []
-});
+  key: 'sortingArrayAtom',
+  default: [],
+})

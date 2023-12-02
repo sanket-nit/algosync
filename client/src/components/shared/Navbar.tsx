@@ -25,40 +25,58 @@ const Navbar = () => {
   return (
     <nav
       className={cn(
-        'z-50 bg-background fixed top-0 flex items-center justify-between w-full h-20 px-6 py-4 bg-bottom shadow-sm dark:border-b-slate-800 dark:border-b-[1px] dark:bg-background dark:bg-opacity-90 transition-all duration-300',
+        'fixed top-0 z-50 flex h-20 w-full items-center justify-between bg-background bg-bottom px-6 py-4 shadow-sm transition-all duration-300 dark:border-b-[1px] dark:border-b-slate-800 dark:bg-background dark:bg-opacity-90',
       )}
     >
-      <div className='flex gap-2 h-full items-center'>
+      <div className='flex h-full items-center gap-2'>
         <div
-          className='flex space-x-1 text-center items-center cursor-pointer'
+          className='flex cursor-pointer items-center space-x-1 text-center'
           onClick={() => navigate(auth?.accessToken ? '/home' : '/')}
         >
           <span className='font-bold'>AlgoSync</span>
-          <img src={logoDark} alt='Neural' className='hidden dark:block w-8 hover:animate-spin' />
-          <img src={logoLight} alt='Neural' className='dark:hidden w-8 hover:animate-spin' />
+          <img src={logoDark} alt='Neural' className='hidden w-8 hover:animate-spin dark:block' />
+          <img src={logoLight} alt='Neural' className='w-8 hover:animate-spin dark:hidden' />
         </div>
-        { auth?.accessToken &&
+        {auth?.accessToken && (
           <>
             <Separator orientation='vertical' />
             <Link to='/home'>
-              <Button variant='ghost'  className={cn('text-zinc-600 dark:text-slate-200', location.pathname === '/home' && 'bg-accent text-accent-foreground')}>
+              <Button
+                variant='ghost'
+                className={cn(
+                  'text-zinc-600 dark:text-slate-200',
+                  location.pathname === '/home' && 'bg-accent text-accent-foreground',
+                )}
+              >
                 Home
               </Button>
             </Link>
             <Link to='/visualiser'>
-              <Button variant='ghost' className={cn('text-zinc-600 dark:text-slate-200', location.pathname === '/visualiser' && 'bg-accent text-accent-foreground')}>
+              <Button
+                variant='ghost'
+                className={cn(
+                  'text-zinc-600 dark:text-slate-200',
+                  location.pathname === '/visualiser' && 'bg-accent text-accent-foreground',
+                )}
+              >
                 Visualizer
               </Button>
             </Link>
             <Link to='/editor'>
-              <Button variant='ghost' className={cn('text-zinc-600 dark:text-slate-200', location.pathname === '/editor' && 'bg-accent text-accent-foreground')}>
+              <Button
+                variant='ghost'
+                className={cn(
+                  'text-zinc-600 dark:text-slate-200',
+                  location.pathname === '/editor' && 'bg-accent text-accent-foreground',
+                )}
+              >
                 Code Editor
               </Button>
             </Link>
           </>
-        }
+        )}
       </div>
-      <div className='flex space-x-2 items-center justify-center md:flex sm:hidden'>
+      <div className='flex items-center justify-center space-x-2 sm:hidden md:flex'>
         {auth?.accessToken ? (
           <Button variant={'destructive'} onClick={handleLogout}>
             {isLoading ? <Spinner /> : 'Logout'}

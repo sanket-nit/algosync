@@ -1,14 +1,14 @@
 import React from 'react'
-import Menu from './menu';
-import Visualiser from './Visualiser';
+import Visualiser from './Visualiser'
+import Menu from './Menu'
 
 const VisualiserLayout: React.FC = () => {
   return (
-    <div className='grid grid-rows-2 lg:grid-rows-none lg:grid-cols-12 gap-4 h-full py-4'>
+    <div className='grid h-full grid-rows-2 gap-4 py-4 lg:grid-cols-12 lg:grid-rows-none'>
       <Menu />
       <Visualiser />
     </div>
   )
 }
 
-export default VisualiserLayout;
+export default VisualiserLayout

@@ -2,7 +2,7 @@ import './Loader.css'
 
 const Loader = () => {
   return (
-    <div className='bg-slate-700 w-screen h-screen flex justify-center items-center'>
+    <div className='flex h-screen w-screen items-center justify-center bg-slate-700'>
       <span className='loader'>
         <span className='loader-inner'></span>
       </span>

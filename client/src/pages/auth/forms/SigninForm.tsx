@@ -81,7 +81,7 @@ const SigninForm = () => {
     <Form {...form}>
       <div className='flex flex-col'>
         <h1 className='text-center text-3xl font-bold'>Log in to AlgoSync</h1>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='mt-5 flex flex-col gap-5 w-full'>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='mt-5 flex w-full flex-col gap-5'>
           <FormField
             control={form.control}
             name='username'
@@ -112,7 +112,7 @@ const SigninForm = () => {
         </form>
         <p className='mt-4'>
           Don't have an account?{' '}
-          <Link to='/signup' className='underline cursor-pointer'>
+          <Link to='/signup' className='cursor-pointer underline'>
             Sign up
           </Link>
         </p>

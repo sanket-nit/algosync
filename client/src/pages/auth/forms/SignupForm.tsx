@@ -66,13 +66,13 @@ const SignupForm = () => {
     }
   }
   return (
-    <div className='flex flex-col max-w-md'>
+    <div className='flex max-w-md flex-col'>
       <Form {...form}>
-        <h1 className='text-center font-bold md:text-5xl sm:text-3xl'>
+        <h1 className='text-center font-bold sm:text-3xl md:text-5xl'>
           Create Your <br />
           AlgoSync Account
         </h1>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='mt-5 flex flex-col gap-5 w-full'>
+        <form onSubmit={form.handleSubmit(onSubmit)} className='mt-5 flex w-full flex-col gap-5'>
           <FormField
             control={form.control}
             name='username'
@@ -116,7 +116,7 @@ const SignupForm = () => {
         </form>
         <p className='mt-2'>
           Already have an account?{' '}
-          <Link to='/signin' className='underline cursor-pointer'>
+          <Link to='/signin' className='cursor-pointer underline'>
             Log in
           </Link>{' '}
         </p>
